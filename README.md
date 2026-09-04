@@ -26,23 +26,11 @@ The workflow includes:
 
 For a fixed maturity, raw SVI models total implied variance as
 
-$$
-w(k)
-=
-a
-+
-b\left[
-\rho(k-m)
-+
-\sqrt{(k-m)^2+\sigma^2}
-\right]
-$$
+$$ w(k) = a + b\left[\rho(k-m) + \sqrt{(k-m)^2+\sigma^2} \right] $$
 
 where
 
-$$
-k = \log\left(\frac{K}{F}\right)
-$$
+$$ k = \log\left(\frac{K}{F}\right) $$
 
 is forward log-moneyness.
 
@@ -64,9 +52,7 @@ SVI is calibrated independently for each maturity, so the dataset is restricted 
 
 The forward price is estimated from near-at-the-money call and put prices using put-call parity:
 
-$$
-F \approx K + e^{rT}(C-P)
-$$
+$$ F \approx K + e^{rT}(C-P) $$
 
 A median estimate across nearby strikes is used to reduce sensitivity to individual quote noise.
 
@@ -81,9 +67,7 @@ To construct the market smile:
 
 Implied volatility is then converted into total implied variance:
 
-$$
-w = \sigma_{\text{imp}}^2 T
-$$
+$$ w = \sigma_{\text{imp}}^2 T $$
 
 ### 5. SVI calibration
 
