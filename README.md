@@ -20,6 +20,8 @@ The workflow includes:
 - Converting implied volatility into total implied variance
 - Calibrating the five raw SVI parameters
 - Comparing fitted and observed implied volatilities
+- Checking fitted total-variance positivity
+- Testing for butterfly arbitrage across the calibrated moneyness range
 - Analysing calibration residuals
 
 ## Raw SVI Model
@@ -91,11 +93,30 @@ The fitted SVI curve closely tracks the observed SPY implied-volatility smile ac
 
 The negative value of `rho` is consistent with the pronounced downside volatility skew typically visible in equity-index options.
 
+## No-Arbitrage Diagnostics
+
+A low calibration error does not by itself guarantee that a fitted volatility smile is economically admissible.
+
+The calibrated SVI slice is therefore evaluated on a dense log-moneyness grid.
+
+Across the calibrated range:
+
+- Fitted total variance remains positive
+- The minimum fitted total variance is approximately **0.00401**
+- The butterfly-arbitrage diagnostic satisfies \(g(k) > 0\) throughout the evaluation grid
+- The minimum observed value of \(g(k)\) is approximately **0.302**
+
+These checks indicate that the fitted single-expiry SVI slice is free of butterfly arbitrage over the evaluated moneyness grid.
+
+Because the project considers only one maturity, calendar-arbitrage conditions across expiries are outside the scope of this analysis.
+
 ## Interpretation
 
 The project illustrates how an option volatility smile can be represented using a compact parametric model rather than a separate implied-volatility observation at every strike.
 
 Residual analysis is used to identify regions where the fitted parametric curve differs from observed market prices and to assess the quality of the calibration.
+
+In addition to achieving a low calibration error, the fitted slice passes basic static-arbitrage diagnostics over the calibrated range. This provides an economic validity check beyond statistical goodness of fit.
 
 ## Tools
 
@@ -109,7 +130,7 @@ Residual analysis is used to identify regions where the fitted parametric curve 
 
 The analysis uses a manually downloaded SPY option-chain snapshot from Cboe delayed market data.
 
-The raw market-data CSV is not included in this repository.
+The market-data CSV used in the analysis is included in this repository so that the notebook can be reproduced directly.
 
 ## Notebook
 
