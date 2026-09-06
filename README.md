@@ -91,7 +91,7 @@ The final implied-volatility RMSE is approximately:
 
 The fitted SVI curve closely tracks the observed SPY implied-volatility smile across the selected strike range.
 
-The negative value of `rho` is consistent with the pronounced downside volatility skew typically visible in equity-index options.
+The negative value of `rho` is consistent with the pronounced downside volatility skew typically observed in broad equity-market options.
 
 ## No-Arbitrage Diagnostics
 
